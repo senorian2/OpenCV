@@ -1,0 +1,22 @@
+import cv2
+faceCascade = cv2.CascadeClassifier("Resource/haarcascade_frontalface_default.xml")
+img = cv2.imread("Resource/crowd.png")
+#1. Imports CV2 library, 2. Imports XML file, 3. Gets CV2 to read the file crowd.png
+
+
+imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+#turns the image into grayscale
+
+faces = faceCascade.detectMultiScale(imgGray, 1.1, 4)
+#Tracks the position of the face using the cascade
+
+
+for (x, y,w ,h) in faces:
+    cv2.rectangle(img,(x, y), (x+w, y+h), (255,0, 0), 2)
+
+    cv2.imshow("Result", img)
+
+    cv2.waitKey(0)
+
+
+#Shows a bounding box around the faces deteced
